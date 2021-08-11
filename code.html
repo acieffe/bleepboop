@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 	<head>
-		<title>App Name: A Coding Project By Ace Baugh</title>
+		<title>BleepBoop: A Coding Project By Ace Baugh</title>
 		<!-- Required meta tags -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -29,7 +29,7 @@
 				<!-- Navbar Logo -->
 				<div class="ps-2">
 					<a href="http://digitalelegance.com/index.html"></a
-					><a href="index.html" class="navbar-brand header-logo"><img src="img/DE.svg" class="d-inline-block align-text-top mt-1" height="40px">***APP NAME***</a>
+					><a href="index.html" class="navbar-brand header-logo"><img src="img/DE.svg" class="d-inline-block align-text-top mt-1" height="40px">BleepBoop</a>
 				</div>
 				<button
 					class="navbar-toggler border-gold"
@@ -71,7 +71,7 @@
 
 						<!-- Link - GitHub Repo -->
 						<li class="nav-item px-3 px-lg-0">
-							<a class="nav-link" id="gitLink" target="_blank" href="#"
+							<a class="nav-link" id="gitLink" target="_blank" href="https://github.com/acieffe/bleepboop"
 								><i class="fab fa-github me-1  h4"></i></svg
 								>Git Repo</a
 							>
@@ -92,29 +92,115 @@
 		<!-- ====== Maiu Section ====== -->
 		<main class="flex-shrink-0">
 			<div class="container my-5 px-5 py-5 bg-black-8 text-light">
-            <h2 class="border-1 border-bottom border-light">The Code for Eureka!</h2>
+            <h2 class="border-1 border-bottom border-light">The Code for BleepBoop</h2>
             <div class="row row-cols-1 row-cols-lg-2 mb-2">
 
 					<!-- Code Area -->
                <div class="col-lg-8 mb-lg-5">
                   <pre class="line-numbers">
                      <code class="language-javascript">
+// Validation on user input
+function isValid() {
+	// Get Values from Page
+	let bleepValue = parseInt(document.getElementById('bleepValue').value);
+	let boopValue = parseInt(document.getElementById('boopValue').value);
 
-                           // Call Hello World alert
-                           function helloWorld() {
-                              alert("Hello, World");
-                           }
+	// Call Empty Table
+	emptyTable();
+
+	// Validates input (makes sure numbers are within rage, bleep:2-9 | boop 3-10)
+	if (bleepValue < 2 || bleepValue > 9 || boopValue < 3 || boopValue > 10 || bleepValue === "" || boopValue === "") {
+		alert('Please enter a correct Bleep Value (2-9) or Boop Value (3-10)');
+	} else if (bleepValue === boopValue) { // or if they are the same
+		alert('Please enter different Bleep and Boop Values: Bleep and Boop cannot be the same.');
+	} else {
+		iterateValues(bleepValue, boopValue);
+	}
+}
+
+// Empty the Table of values on the page
+function emptyTable() {
+	let table = document.getElementById('results');
+	while (table.firstChild) {
+		table.removeChild(table.firstChild);
+	}
+}
+
+// Sequentially goes through numbers 1 through 100
+function iterateValues(bleepValue, boopValue) {
+	let start = 1;
+	let end = 100;
+
+	for (let num = start; num <= end; num++) {
+		if (bleepBoop(num, bleepValue, boopValue)) { // if divisible by both
+			printValues('BleepBoop');
+		} else if (bleep(num, bleepValue)) { // if divisible by one
+			printValues('Bleep');
+		} else if (boop(num, boopValue)) { // if divisible by the other
+			printValues('Boop');
+		} else {
+			printValues(num);
+		}
+	}
+}
+
+// Output Values to Page
+function printValues(printValue) {
+	let tr = document.createElement('tr');
+	let td = document.createElement('td');
+
+	document.getElementById('results').appendChild(tr).appendChild(td).innerHTML = printValue;
+}
+
+// This function checks if the current iteration number is divisible by the bleep and boop values
+function bleepBoop(num, bleepValue, boopValue) {
+	if (num % bleepValue === 0 && num % boopValue === 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// This function checks if the current iteration number is divisible by the bleep value
+function bleep(num, bleepValue) {
+	if (num % bleepValue === 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// This function checks if the current iteration number is divisible by the boop value
+function boop(num, boopValue) {
+	if (num % boopValue === 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
 							</code>
                   </pre>
                </div>
 
 					<!-- Code Description Area -->
                <div class="col-lg-4 pb-5 mb-5 ">
-                  <p>The Code is structured in one function</p>
-                  <h5>Hello World</h5>
-                  <p>Hello World is a function that displays an alert the the message of, "Hello, World"</p>
+                  <p>The Code is structured in the following functions:</p>
+                  <h5>isValid</h5>
+                  <p>This function checks to see if the user inputs are valid and not just empty values or values out of range. Also tucked in here is a clearing of any previous tables generated by the user by calling the emptyTable function</p>
+                  <h5>emptyTable</h5>
+                  <p>This function loops through the table children and deletes each one until the table is empty. Can be called upon by the user from the page as well.</p>
+                  <h5>iterateValues</h5>
+                  <p>This function takes in the user inputs and loops through numbers 1-100 and calls to see if the current iteration is divisible by the user inputs. It then calls the printValues function and sends to desired output.</p>
+                  <h5>printValues</h5>
+                  <p>This function creates table row, table data, and appends them to the current table as well as the passed value.</p>
+                  <h5>bleepBoop</h5>
+                  <p>This function returns true if the passed value is divisible by the passed user input, false if it isn't.</p>
+                  <h5>bleep</h5>
+                  <p>This function returns true if the passed value is divisible by the passed user input, false if it isn't.</p>
+                  <h5>boop</h5>
+                  <p>This function returns true if the passed value is divisible by the passed user input, false if it isn't.</p>
                </div>
-					<div class="col-12 d-none d-lg-block my-4"></div> // Gives more padding under code section
+					<div class="col-12 d-none d-lg-block my-4"></div> <!-- Gives more padding under code section -->
             </div>
 			</div>
 		</main>

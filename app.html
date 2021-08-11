@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 	<head>
-		<title>App Name: A Coding Project By Ace Baugh</title>
+		<title>BleepBoop: A Coding Project By Ace Baugh</title>
 		<!-- Required meta tags -->
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -28,7 +28,7 @@
 				<!-- Navbar Logo -->
 				<div class="ps-2">
 					<a href="http://digitalelegance.com/index.html"></a
-					><a href="index.html" class="navbar-brand header-logo"><img src="img/DE.svg" class="d-inline-block align-text-top mt-1" height="40px">***APP NAME***</a>
+					><a href="index.html" class="navbar-brand header-logo"><img src="img/DE.svg" class="d-inline-block align-text-top mt-1" height="40px">BleepBoop</a>
 				</div>
 				<button
 					class="navbar-toggler border-gold"
@@ -70,7 +70,7 @@
 
 						<!-- Link - GitHub Repo -->
 						<li class="nav-item px-3 px-lg-0">
-							<a class="nav-link" id="gitLink" target="_blank" href="#"
+							<a class="nav-link" id="gitLink" target="_blank" href="https://github.com/acieffe/Reverse"
 								><i class="fab fa-github me-1  h4"></i></svg
 								>Git Repo</a
 							>
@@ -91,6 +91,39 @@
 		<!-- ====== Maiu Section ====== -->
 		<main class="flex-shrink-0 d-flex pb-2 mb-5">
 			<div class="container col-xxl-8 px-4 py-5 my-5 bg-black-8 text-light">
+				<div class="row rowcols-1 row-cols-lg-2">
+					<div class="col-lg-4">
+						<h1>BleepBoop: A Coding Project</h1>
+						<h4 class="lead">Certain numbers could be considered offensive and so in this app you define which numbers should be censored. Not only that, but they will censor any number that is divisible by either number or both.</h4>
+						<h2 class="mt-5 border-bottom-gold">Instructions</h2>
+						<p>Enter two different numbers between 2 and 9 for Bleep and 3 and 10 for Boop that you wish to censor.</p>
+					</div>
+					<div class="col-lg-8">
+						<h5 class="pb-2">Enter Values</h5>
+						<form class="row gy-2 gx-3">
+							<div class="col">
+								<label for="bleepValue">Bleep Value</label>
+								<input type="number" id="bleepValue" class="form-control" placeholder="Bleep Value" value="2" min="2" max="9" aria-label="Bleep Value" required>
+							</div>
+							<div class="col">
+								<label for="boopValue">Boop Value</label>
+								<input type="number" id="boopValue" class="form-control" placeholder="Boop Value" value="3" min="3" max="9" aria-label="Boop Value" required>
+							</div>
+							<div class="col-12 d-flex justify-content-end">
+								<button id="btnSubmit" type="button" class="btn btn-warning btn-lg me-2">Display Values</button>
+								<button id="btnEmpty" type="button" class="btn btn-outline-warning btn-lg">Clear Values</button>
+							</div>
+						</form>
+						<h2 class="mt-5 border-bottom-gold">Results</h2>
+						<div class="table-responsive mb-5">
+							<table class="table table-dark text-light table-striped table-sm mb-5">
+								<tbody id="results" class="mb-5">
+									<!-- Results go here -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</main>
 
@@ -148,7 +181,6 @@
 			</p>
 		</footer>
 
-
 		<!-- Bootstrap JS -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -161,5 +193,9 @@
 			crossorigin="anonymous"
 		></script>
 		<script src="js/site.js"></script>
+		<script>
+			document.getElementById ('btnSubmit').addEventListener('click', isValid);
+			document.getElementById('btnEmpty').addEventListener("click", emptyTable);
+		</script>
 	</body>
 </html>
